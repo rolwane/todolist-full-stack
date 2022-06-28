@@ -1,5 +1,7 @@
 const router = require('express').Router();
 
-router.get('/users', (_reques, response) => response.status(200).send('Hello, World!'));
+const userController = require('../controllers/userController');
+
+router.post('/user', userController.registerNewUser);
 
 module.exports = router;

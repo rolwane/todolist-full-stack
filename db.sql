@@ -1,7 +1,7 @@
-CREATE DATABASE todolist
+CREATE DATABASE Todolist
     DEFAULT CHARACTER SET = 'utf8mb4';
 
-USE todolist;
+USE Todolist;
 
 CREATE TABLE IF NOT EXISTS Users (  
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
