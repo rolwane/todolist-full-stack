@@ -1,13 +1,15 @@
+const userService = require('../services/userService');
 const joi = require('joi');
 
-const validateBody = ({ body }, response, next) => {
-  const schema = joi.object({
-    name: joi.string().min(3).required(),
-    email: joi.string().email().required(),
-    password: joi.string().min(8).required(),
-  });
+const settings = {
+  name: joi.string().min(3).required(),
+  email: joi.string().email().required(),
+  password: joi.string().min(8).required(),
+};
 
-  const { error } = schema.validate(body);
+const validateBody = (request, response, next) => {
+  const schema = joi.object(settings);
+  const { error } = schema.validate(request.body);
 
   if (error) {
     return response.status(422).json({ error: error.message });
@@ -16,6 +18,17 @@ const validateBody = ({ body }, response, next) => {
   next();
 };
 
+const checkUserAlreadyExists = async ({ body }, response, next) => {
+  const foundUser = await userService.getUserByEmail(body.email);
+
+  if (foundUser.length > 0) {
+    return response.status(422).json({ error: 'Email provided is already registered' });
+  }
+
+  next();
+};
+
 module.exports = {
   validateBody,
+  checkUserAlreadyExists,
 };

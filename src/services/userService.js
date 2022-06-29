@@ -5,6 +5,12 @@ const registerNewUser = async (user) => {
   return response;
 };
 
+const getUserByEmail = async (email) => {
+  const response = await userModel.getUserByEmail(email);
+  return response;
+};
+
 module.exports = {
   registerNewUser,
+  getUserByEmail,
 };
