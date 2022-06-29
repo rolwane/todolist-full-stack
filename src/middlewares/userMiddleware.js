@@ -1,4 +1,3 @@
-/* eslint-disable consistent-return */
 const joi = require('joi');
 
 const validateBody = ({ body }, response, next) => {
