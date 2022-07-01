@@ -1,7 +1,13 @@
+require('express-async-errors');
+
 const express = require('express');
 const dotenv = require('dotenv');
 
-const mainRouter = require('./routes/userRouter');
+// error middleware
+const errorMiddleware = require('./middlewares/errorMiddleware');
+
+// routers
+const userRouter = require('./routes/userRouter');
 
 dotenv.config();
 
@@ -12,4 +18,5 @@ app.use(express.json());
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-app.use(mainRouter);
+app.use(userRouter);
+app.use(errorMiddleware);
