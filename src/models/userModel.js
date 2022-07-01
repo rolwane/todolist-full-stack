@@ -1,8 +1,10 @@
 const connection = require('./connection');
+const generateToken = require('../utils/generateToken');
 
 const registerNewUser = async ({ name, email, password }) => {
   const [response] = await connection.execute('INSERT INTO Todolist.Users VALUES (?, ?, ?, ?)', [0, name, email, password]);
-  return { insertId: response.insertId, name, email };
+  const token = generateToken({ id: response.insertId, name, email });
+  return token;
 };
 
 const getUserByEmail = async (email)  => {
