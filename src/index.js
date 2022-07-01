@@ -8,6 +8,7 @@ const errorMiddleware = require('./middlewares/errorMiddleware');
 
 // routers
 const userRouter = require('./routes/userRouter');
+const taskRouter = require('./routes/taskRouter');
 
 dotenv.config();
 
@@ -19,4 +20,5 @@ app.use(express.json());
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 app.use(userRouter);
+app.use(taskRouter);
 app.use(errorMiddleware);
