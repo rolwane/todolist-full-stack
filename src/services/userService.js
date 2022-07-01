@@ -10,7 +10,13 @@ const getUserByEmail = async (email) => {
   return response;
 };
 
+const userLogin = async (userData) => {
+  const response = await userModel.userLogin(userData);
+  return response;
+};
+
 module.exports = {
   registerNewUser,
   getUserByEmail,
+  userLogin,
 };

@@ -12,7 +12,20 @@ const getUserByEmail = async (email)  => {
   return response;
 };
 
+const userLogin = async ({ email, password }) => {
+  const [response] = await connection.execute('SELECT * FROM Todolist.Users WHERE email = ? AND password = ?', [email, password]);
+
+  if (response.length === 0) return response;
+
+  delete response[0].password;
+
+  const token = generateToken(response[0]);
+  
+  return token;
+};
+
 module.exports = {
   registerNewUser,
   getUserByEmail,
+  userLogin,
 };
