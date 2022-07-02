@@ -10,7 +10,13 @@ const addNewTask = async (data) => {
   return response;
 };
 
+const deleteTask = async (id) => {
+  const response = await taskModel.deleteTask(id);
+  return response;
+};
+
 module.exports = {
   getAllByUserId,
   addNewTask,
+  deleteTask,
 };
