@@ -1,35 +1,31 @@
-const userService = require('../services/userService');
 const joi = require('joi');
-
-const settings = {
-  name: joi.string().min(3).required(),
-  email: joi.string().email().required(),
-  password: joi.string().min(8).required(),
-};
-
-const loginSettings = {
-  email: joi.string().email().required(),
-  password: joi.string().required(),
-};
+const userService = require('../services/userService');
 
 const validateBody = (request, response, next) => {
-  const schema = joi.object(settings);
+
+  const schema = joi.object({
+    name: joi.string().min(3).required(),
+    email: joi.string().email().required(),
+    password: joi.string().min(8).required(),
+  });
+
   const { error } = schema.validate(request.body);
 
-  if (error) {
-    return response.status(422).json({ error: error.message });
-  }
+  if (error) return response.status(422).json({ error: error.message });
 
   next();
 };
 
-const validateLoginBody = (request, response, next) => {
-  const schema = joi.object(loginSettings);
+const validateLogin = (request, response, next) => {
+
+  const schema = joi.object({
+    email: joi.string().email().required(),
+    password: joi.string().required(),
+  });
+
   const { error } = schema.validate(request.body);
 
-  if (error) {
-    return response.status(422).json({ error: error.message });
-  }
+  if (error) return response.status(422).json({ error: error.message });
 
   next();
 };
@@ -47,5 +43,5 @@ const checkUserAlreadyExists = async ({ body }, response, next) => {
 module.exports = {
   validateBody,
   checkUserAlreadyExists,
-  validateLoginBody,
+  validateLogin,
 };

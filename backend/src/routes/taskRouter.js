@@ -4,12 +4,12 @@ const taskController = require('../controllers/taskController');
 const taskMiddleware = require('../middlewares/taskMiddleware');
 
 router.get('/tasks',
-  taskMiddleware.validateGetBody,
+  taskMiddleware.validateGet,
   taskController.getAllByUserId
 );
 
 router.post('/tasks',
-  taskMiddleware.validatePostBody,
+  taskMiddleware.validateBody,
   taskController.addNewTask
 );
 

@@ -10,7 +10,7 @@ router.post('/users',
 );
 
 router.post('/login',
-  userMiddleware.validateLoginBody,
+  userMiddleware.validateLogin,
   userController.userLogin,
 );
 
