@@ -5,6 +5,12 @@ const getAllByUserId = async (id) => {
   return response;
 };
 
+const addNewTask = async ({ title, status, userId }) => {
+  const [response] = await connection.execute('INSERT INTO Todolist.Tasks VALUES (?, ?, ?, ?)', [0, title, status, userId]);
+  return { insertId: response.insertId, title, status, userId };
+};
+
 module.exports = {
   getAllByUserId,
+  addNewTask,
 };

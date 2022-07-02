@@ -5,6 +5,12 @@ const getAllByUserId = async ({ body }, response) => {
   return response.status(200).json(serviceResponse);
 };
 
+const addNewTask = async ({ body }, response) => {
+  const serviceResponse = await taskService.addNewTask(body);
+  return response.status(201).json(serviceResponse);
+};
+
 module.exports = {
   getAllByUserId,
+  addNewTask,
 };
