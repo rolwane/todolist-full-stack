@@ -13,6 +13,8 @@ router.post('/tasks',
   taskController.addNewTask
 );
 
-router.delete('/tasks/:id', taskController.deleteTask);
+router.delete('/tasks/:id',
+  taskController.deleteTask
+);
 
 module.exports = router;
