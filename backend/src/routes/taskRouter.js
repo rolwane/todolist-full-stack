@@ -8,6 +8,9 @@ router.get('/tasks',
   taskController.getAllByUserId
 );
 
-router.post('/tasks', taskController.addNewTask);
+router.post('/tasks',
+  taskMiddleware.validatePostBody,
+  taskController.addNewTask
+);
 
 module.exports = router;
