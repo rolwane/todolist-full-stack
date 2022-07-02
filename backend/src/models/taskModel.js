@@ -15,8 +15,21 @@ const deleteTask = async (id) => {
   return response;
 };
 
+const editTask = async (id, { title, status }) => {
+
+  const query = `
+    UPDATE Todolist.Tasks
+    SET title = ?, status = ?
+    WHERE id = ?
+  `;
+
+  const [response] = await connection.execute(query, [title, status, id]);
+  return response;
+};
+
 module.exports = {
   getAllByUserId,
   addNewTask,
   deleteTask,
+  editTask,
 };

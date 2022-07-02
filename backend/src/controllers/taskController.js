@@ -1,7 +1,7 @@
 const taskService = require('../services/taskService');
 
 const getAllByUserId = async ({ body }, response) => {
-  const serviceResponse = await taskService.getAllByUserId(body.id);
+  const serviceResponse = await taskService.getAllByUserId(body.userId);
   return response.status(200).json(serviceResponse);
 };
 
@@ -15,8 +15,14 @@ const deleteTask = async ({ params }, response) => {
   return response.status(200).json(serviceResponse);
 };
 
+const editTask = async ({ params, body }, response) => {
+  const serviceResponse = await taskService.editTask(params.id, body);
+  return response.status(200).json(serviceResponse);
+};
+
 module.exports = {
   getAllByUserId,
   addNewTask,
   deleteTask,
+  editTask
 };

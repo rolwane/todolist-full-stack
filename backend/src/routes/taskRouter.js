@@ -17,4 +17,9 @@ router.delete('/tasks/:id',
   taskController.deleteTask
 );
 
+router.put('/tasks/:id',
+  taskMiddleware.validateEdit,
+  taskController.editTask,
+);
+
 module.exports = router;

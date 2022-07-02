@@ -26,7 +26,22 @@ const validateBody = (request, response, next) => {
   next();
 };
 
+const validateEdit = (request, response, next) => {
+
+  const schema = joi.object({
+    title: joi.string().required(),
+    status: joi.string().required(),
+  });
+  
+  const { error } = schema.validate(request.body);
+
+  if (error) return response.status(422).json({ error: error.message });
+
+  next();
+};
+
 module.exports = {
   validateGet,
   validateBody,
+  validateEdit,
 };
