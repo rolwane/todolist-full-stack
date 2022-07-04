@@ -22,4 +22,22 @@ describe('Test userController', () => {
     expect(response.status().json).toHaveBeenCalledWith({ token });
   });
 
+  it('Should userLogin return status 404 and error message if user is not found', async () => {
+
+    userService.userLogin = jest.fn().mockResolvedValue([]);
+
+    request = {}
+
+    response = {
+      status: jest.fn().mockReturnValue({
+        json: jest.fn(),
+      }),
+    }
+
+    await userController.userLogin(request, response);
+
+    expect(response.status).toHaveBeenCalledWith(404);
+    expect(response.status().json).toHaveBeenCalledWith({ error: 'invalid email or password' });
+  });
+
 });
