@@ -24,4 +24,10 @@ describe('Test taskModel', () => {
     expect(response).toEqual({});
   });
 
+  it('Should editTask return correctly', async () => {
+    connection.execute = jest.fn().mockResolvedValue([{}]);
+    const response = await taskModel.editTask(0, {title: 'Estudar Docker', status: 'pendente'});
+    
+    expect(response).toEqual({});
+  });
 });
