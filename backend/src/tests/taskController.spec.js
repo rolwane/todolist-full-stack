@@ -43,4 +43,25 @@ describe('Test taskController', () => {
     expect(response.status).toHaveBeenCalledWith(201);
   });
 
+  it('Should deleteTask method return status 200', async () => {
+
+    taskService.deleteTask = jest.fn().mockResolvedValue({});
+
+    const request = {
+      params: {
+        id: 1,
+      },
+    }
+
+    const response = {
+      status: jest.fn().mockReturnValue({
+        json: jest.fn(),
+      })
+    }
+
+    await taskController.deleteTask(request, response);
+
+    expect(response.status).toHaveBeenCalledWith(200);
+  });
+
 });
