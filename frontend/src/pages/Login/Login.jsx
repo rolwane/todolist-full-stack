@@ -20,8 +20,11 @@ function Login() {
     setLoading(true);
 
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+      localStorage.setItem('token', JSON.stringify(data.token));
+
       setLoading(false);
+      setErrorMessage('');
     } catch ({ request }) {
       const { error } = JSON.parse(request.response);
 
