@@ -1,5 +1,5 @@
 require('express-async-errors');
-
+const cors = require('cors');
 const express = require('express');
 
 // error middleware
@@ -11,6 +11,7 @@ const taskRouter = require('./routes/taskRouter');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
