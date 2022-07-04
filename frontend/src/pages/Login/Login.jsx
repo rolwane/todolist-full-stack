@@ -1,12 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+
+// imported icons
+import { VscLoading } from 'react-icons/vsc';
+
+// imported components
+import ErrorCard from '../../components/ErrorCard/ErrorCard';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setLoading(true);
+
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+      setLoading(false);
+    } catch ({ request }) {
+      const { error } = JSON.parse(request.response);
+
+      setErrorMessage(error);
+      setLoading(false);
+    }
   };
 
   return (
@@ -34,10 +55,13 @@ function Login() {
 
         <button
           type="submit"
-          className="w-full p-4 rounded-lg bg-teal-500 text-white text-md font-bold"
+          className="w-full p-4 rounded-lg bg-teal-500 text-white text-md font-bold flex items-center gap-3 justify-center"
         >
+          {loading && <VscLoading className="animate-spin text-2xl" />}
           Sign In
         </button>
+
+        {errorMessage && <ErrorCard message={errorMessage} />}
 
         <Link
           to="/asdasdad"
