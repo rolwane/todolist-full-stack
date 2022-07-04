@@ -1,7 +1,7 @@
 const taskService = require('../services/taskService');
 
-const getAllByUserId = async ({ body }, response) => {
-  const serviceResponse = await taskService.getAllByUserId(body.userId);
+const getAllByUserId = async ({ userData }, response) => {
+  const serviceResponse = await taskService.getAllByUserId(userData.id);
   return response.status(200).json(serviceResponse);
 };
 

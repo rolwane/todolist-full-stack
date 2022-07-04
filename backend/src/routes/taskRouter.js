@@ -2,9 +2,10 @@ const router = require('express').Router();
 
 const taskController = require('../controllers/taskController');
 const taskMiddleware = require('../middlewares/taskMiddleware');
+const tokenMiddleware = require('../middlewares/tokenMiddleware');
 
 router.get('/tasks',
-  taskMiddleware.validateGet,
+  tokenMiddleware.validateToken,
   taskController.getAllByUserId
 );
 
