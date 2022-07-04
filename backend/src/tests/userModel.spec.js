@@ -12,4 +12,11 @@ describe('Test userModel', () => {
     expect(response).toBe('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
   });
 
+  it('Should getUserByEmail return correctly', async () => {
+    connection.execute = jest.fn().mockResolvedValue([[]]);
+    const response = await userModel.getUserByEmail();
+
+    expect(response).toEqual([]);
+  });
+
 });
