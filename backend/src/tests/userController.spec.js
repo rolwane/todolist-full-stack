@@ -2,7 +2,6 @@ const userController = require('../controllers/userController');
 const userService = require('../services/userService');
 
 describe('Test userController', () => {
-
   it('Should registerNewUser middleware return status code 201 and calls json method with a token', async () => {
     const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9';
 
