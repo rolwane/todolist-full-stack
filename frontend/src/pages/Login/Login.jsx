@@ -64,7 +64,7 @@ function Login() {
         {errorMessage && <ErrorCard message={errorMessage} />}
 
         <Link
-          to="/asdasdad"
+          to="/register"
           className="text-white text-center text-sm font-bold"
         >
           {'Don\'t have an account?'}
