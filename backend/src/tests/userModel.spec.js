@@ -19,4 +19,10 @@ describe('Test userModel', () => {
     expect(response).toEqual([]);
   });
 
+  it('Should userLogin return an empty array when receiving incorrect data', async () => {
+    connection.execute = jest.fn().mockResolvedValue([[]]);
+    const response = await userModel.userLogin({ email: '', password: '' });
+
+    expect(response).toEqual([]);
+  });
 });
