@@ -39,7 +39,7 @@ function Register() {
         <input
           type="text"
           placeholder="Name"
-          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600"
+          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600 outline-none"
           value={name}
           onChange={({ target }) => setName(target.value)}
           required
@@ -48,7 +48,7 @@ function Register() {
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600"
+          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600 outline-none"
           value={email}
           onChange={({ target }) => setEmail(target.value)}
           required
@@ -57,7 +57,7 @@ function Register() {
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600"
+          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600 outline-none"
           value={password}
           onChange={({ target }) => setPassword(target.value)}
           required

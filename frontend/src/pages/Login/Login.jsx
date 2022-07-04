@@ -42,7 +42,7 @@ function Login() {
         <input
           type="email"
           placeholder="Email"
-          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600"
+          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600 outline-none"
           onChange={({ target }) => setEmail(target.value)}
           value={email}
           required
@@ -51,7 +51,7 @@ function Login() {
         <input
           type="password"
           placeholder="Password"
-          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600"
+          className="w-full p-4 rounded-lg text-md font-semibold text-gray-600 outline-none"
           onChange={({ target }) => setPassword(target.value)}
           value={password}
           required
