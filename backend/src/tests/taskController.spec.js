@@ -26,4 +26,21 @@ describe('Test taskController', () => {
 
   });
 
+  it('Should addNewTask method return status 201', async () => {
+
+    taskService.addNewTask = jest.fn().mockResolvedValue({});
+
+    const request = {}
+
+    const response = {
+      status: jest.fn().mockReturnValue({
+        json: jest.fn(),
+      })
+    }
+
+    await taskController.addNewTask(request, response);
+
+    expect(response.status).toHaveBeenCalledWith(201);
+  });
+
 });
