@@ -25,4 +25,18 @@ describe('Test userModel', () => {
 
     expect(response).toEqual([]);
   });
+
+  it('Should userLogin return a token when receiving valid data', async () => {
+
+    const mockExecute = [
+      [{}],
+    ]
+
+    connection.execute = jest.fn().mockResolvedValue(mockExecute);
+    jwt.sign = jest.fn().mockResolvedValue('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
+
+    const response = await userModel.userLogin({ email: 'maria@gmail.com', password: '123456789' });
+
+    expect(response).toBe('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9');
+  });
 });
