@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-// imported icons
+import JWTDecode from 'jwt-decode';
 import { VscLoading } from 'react-icons/vsc';
 
-// imported components
 import ErrorCard from '../../components/ErrorCard/ErrorCard';
 
 function Login() {
@@ -13,17 +11,22 @@ function Login() {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+
   const navigate = useNavigate();
+
+  const saveData = (token) => {
+    const { id, name } = JWTDecode(token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('userData', JSON.stringify({ id, name, email }));
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
-      localStorage.setItem('token', JSON.stringify(data.token));
-
+      const { data: { token } } = await axios.post(`${process.env.REACT_APP_API_URL}/login`, { email, password });
+      saveData(token);
       setLoading(false);
       setErrorMessage('');
       navigate('/home');

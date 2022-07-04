@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import JWTDecode from 'jwt-decode';
 
 // imported icons
 import { VscLoading } from 'react-icons/vsc';
@@ -16,15 +17,25 @@ function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const navigate = useNavigate();
+
+  const saveData = (token) => {
+    const { id } = JWTDecode(token);
+    localStorage.setItem('token', token);
+    localStorage.setItem('userData', JSON.stringify({ id, name, email }));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
 
     try {
-      const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/users`, { name, email, password });
-      localStorage.setItem('token', JSON.stringify(data.token));
+      const { data: { token } } = await axios.post(`${process.env.REACT_APP_API_URL}/users`, { name, email, password });
+      localStorage.setItem('token', JSON.stringify(token));
+      saveData(token);
       setLoading(false);
       setErrorMessage('');
+      navigate('/home');
     } catch ({ request }) {
       const { error } = JSON.parse(request.response);
       setErrorMessage(error);
