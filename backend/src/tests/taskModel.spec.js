@@ -17,4 +17,11 @@ describe('Test taskModel', () => {
     expect(response).toEqual({ insertId: 0, title: 'Estudar JS', status: 'pendente', userId: 0 });
   });
 
+  it('Should deleteTask return correctly', async () => {
+    connection.execute = jest.fn().mockResolvedValue([{}]);
+    const response = await taskModel.deleteTask(0);
+    
+    expect(response).toEqual({});
+  });
+
 });
