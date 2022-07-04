@@ -64,4 +64,24 @@ describe('Test taskController', () => {
     expect(response.status).toHaveBeenCalledWith(200);
   });
 
+  it('Should editTask method return status 200', async () => {
+
+    taskService.editTask = jest.fn().mockResolvedValue({});
+
+    const request = {
+      params: {
+        id: 1,
+      },
+    }
+
+    const response = {
+      status: jest.fn().mockReturnValue({
+        json: jest.fn(),
+      })
+    }
+
+    await taskController.editTask(request, response);
+
+    expect(response.status).toHaveBeenCalledWith(200);
+  });
 });
