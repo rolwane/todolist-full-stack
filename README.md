@@ -19,7 +19,7 @@ Esse projeto consiste em um sistema capaz capaz de auxiliar as pessoas colaborad
 Antes de mais nada você precisa clonar o repositório ou baixar todos os arquivos para sua máquina.
 
 ### Com Docker
-Se você possui o docker e docker-compose instalado na sua máquina, mas rodar o comando: 
+Se você possui o docker e docker-compose instalado na sua máquina, basta rodar o comando: 
 `docker-compose up`
 
 ### Sem Docker
