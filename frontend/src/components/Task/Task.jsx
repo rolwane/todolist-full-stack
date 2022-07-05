@@ -33,7 +33,9 @@ function Task({
   };
 
   const handleEdit = (event) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
 
     axios.put(`${process.env.REACT_APP_API_URL}/tasks/${id}`, {
       title: editTitle,
