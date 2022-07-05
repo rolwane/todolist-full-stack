@@ -9,6 +9,8 @@ services:
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./backend/db/:/docker-entrypoint-initdb.d/
 
   backend:
     build: ./backend
