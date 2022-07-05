@@ -6,17 +6,11 @@ import propTypes from 'prop-types';
 import AppContext from './AppContext';
 
 function Provider({ children }) {
-  const [userName, setUserName] = useState('');
-  const [userEmail, setUserEmail] = useState('');
-  const [userId, setUserId] = useState('');
+  const [tasks, setTasks] = useState([]);
 
   const value = {
-    userName,
-    userEmail,
-    userId,
-    setUserName,
-    setUserEmail,
-    setUserId,
+    tasks,
+    setTasks,
   };
 
   return (
