@@ -11,6 +11,9 @@ describe('Test taskController', () => {
       body: {
         userId: 0,
       },
+      userData: {
+        id: 0
+      }
     }
 
     const response = {
