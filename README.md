@@ -1,5 +1,5 @@
 ### Desafio Técnico Full Stack
-Esse projeto consiste em um sistema capaz capaz de auxiliar as pessoas colaboradoras a se organizar e ter mais produtividade.
+Esse projeto consiste em um sistema capaz de auxiliar as pessoas colaboradoras a se organizar e ter mais produtividade.
 <br>
 ## Requisitos Técnicos
 
